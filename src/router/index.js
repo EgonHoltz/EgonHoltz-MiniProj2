@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import { nextTick } from "vue/types/umd";
 import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);

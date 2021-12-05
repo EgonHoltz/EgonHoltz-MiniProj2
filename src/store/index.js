@@ -4,10 +4,10 @@ import Vuex from "vuex";
 //Modules imports
 import moduleBase from "./module";
 import moduleAuth from "./auth/auth.module";
-import moduleUser from "./user/user.module";
-import moduleAnimal from "./animals/animal.module";
-import moduleQuizz from "./quizzes/quizz.module";
-import moduleQuestion from "./questions/question.module";
+import moduleUser from "./users/users.module";
+import moduleAnimal from "./animals/animals.module";
+import moduleQuizz from "./quizzes/quizzes.module";
+import moduleQuestion from "./questions/questions.module";
 
 Vue.use(Vuex);
 
