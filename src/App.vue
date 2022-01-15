@@ -1,17 +1,16 @@
 <template>
   <b-container fluid>
     <NavBar></NavBar>
-    <routerView />
+    <router-view />
   </b-container>
 </template>
-
 <script>
-import { NavBar } from '@/components/NavBar.vue';
+import NavBar from "@/components/NavBar.vue";
 
-export default{
- name: "app",
- components: {
-   NavBar
- }
+export default {
+  name: "app",
+  components: {
+    NavBar
+  }
 };
 </script>
