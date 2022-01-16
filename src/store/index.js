@@ -8,6 +8,7 @@ import moduleAnimal from "./animals/animal.module";
 import moduleQuiz from "./quizzes/quiz.module";
 import moduleQuestion from "./questions/question.module";
 import moduleSponsor from "./sponsors/sponsor.module"
+import moduleSpecialist from "./specialists/specialist.module"
 
 Vue.use(Vuex);
 
@@ -23,5 +24,6 @@ export default new Vuex.Store({
     quiz: moduleQuiz,
     question: moduleQuestion,
     sponsor: moduleSponsor,
+    specialist: moduleSpecialist
   }
 });

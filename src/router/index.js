@@ -100,6 +100,21 @@ const routes = [
     component: () => import("@/views/sponsors/AddSponsor.vue")
   },
   {
+    path: "/admin/specialists",
+    name: "listSpecialists",
+    component: () => import("@/views/specialists/ListSpecialists.vue")
+  },
+  {
+    path: "/admin/specialists/:specialistId",
+    name: "editSpecialist",
+    component: () => import("@/views/specialists/EditSpecialist.vue")
+  },
+  {
+    path: "/admin/specialists/add",
+    name: "addSpecialist",
+    component: () => import("@/views/specialists/AddSpecialist.vue")
+  },
+  {
     path: "/profile",
     name: "profile",
     component: () => import("@/views/Profile.vue"),
