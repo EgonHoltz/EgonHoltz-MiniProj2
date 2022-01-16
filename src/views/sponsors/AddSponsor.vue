@@ -2,7 +2,7 @@
   <!-- Portfolio Section -->
   <section class="page-section">
     <b-container>
-      <HeaderPage title="Adicionar PATROCINADOR" />
+      <HeaderPage title="Adicionar Patrocinador" />
 
       <!--FORM-->
       <b-row>
@@ -11,7 +11,7 @@
           <form @submit.prevent="add">
             <div class="form-group">
               <input
-                v-model="sponsor.name"
+                v-model="name"
                 type="text"
                 class="form-control form-control-lg"
                 id="txtName"
@@ -26,12 +26,12 @@
                 placeholder="escreve contacto telefonico ou email"
                 cols="30"
                 rows="3"
-                v-model="sponsor.contact"
+                v-model="contact"
                 required
               ></textarea>
             </div>
             <div class="form-group">
-              <select id="sltGroup" class="form-control form-control-lg" v-model="sponsor.group">
+              <select id="sltGroup" class="form-control form-control-lg" v-model="group">
                 <option value>-- SELECIONA GRUPO --</option>
                 <option value="anfibio">ANFÍBIO</option>
                 <option value="ave">AVE</option>
@@ -43,7 +43,7 @@
             <div class="form-group">
               <div class="form-group">
                 <input
-                  v-model="sponsor.activeSponsor"
+                  v-model="activeSponsor"
                   type="checkbox"
                   class="form-control"
                   id="chkActiveSponsor"
@@ -54,7 +54,7 @@
             <div class="form-group">
               <div class="form-group">
                 <input
-                  v-model="sponsor.valueCampaign"
+                  v-model="valueCampaign"
                   type="number"
                   min="1"
                   class="form-control form-control-lg"
@@ -67,7 +67,7 @@
             <div class="form-group">
               <div class="form-group">
                 <input
-                  v-model="sponsor.activationDate"
+                  v-model="activationDate"
                   type="datetime"
                   class="form-control form-control-lg"
                   id="dtActivitation"
@@ -79,7 +79,7 @@
             <div class="form-group">
               <div class="form-group">
                 <input
-                  v-model="sponsor.endDate"
+                  v-model="endDate"
                   type="datetime"
                   class="form-control form-control-lg"
                   id="dtEndSponsor"

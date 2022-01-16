@@ -85,6 +85,21 @@ const routes = [
     component: () => import("@/views/animals/AddAnimal.vue")
   },
   {
+    path: "/admin/sponsors",
+    name: "listSponsors",
+    component: () => import("@/views/sponsors/ListSponsors.vue")
+  },
+  {
+    path: "/admin/sponsors/:sponsorId",
+    name: "editSponsor",
+    component: () => import("@/views/sponsors/EditSponsor.vue")
+  },
+  {
+    path: "/admin/sponsors/add",
+    name: "addSponsor",
+    component: () => import("@/views/sponsors/AddSponsor.vue")
+  },
+  {
     path: "/profile",
     name: "profile",
     component: () => import("@/views/Profile.vue"),
@@ -140,21 +155,6 @@ const routes = [
     meta: {
       rule: "user"
     }
-  },
-  {
-    path: "/admin/sponsors",
-    name: "listSponsors",
-    component: () => import("@/views/sponsors/ListSponsors.vue")
-  },
-  {
-    path: "/admin/sponsors/:sponsorId",
-    name: "editSponsor",
-    component: () => import("@/views/sponsors/EditSponsor.vue")
-  },
-  {
-    path: "/admin/sponsors/add",
-    name: "addSponsor",
-    component: () => import("@/views/sponsors/AddSponsor.vue")
   },
   // Redirect to 404 page, if no match found
   {
