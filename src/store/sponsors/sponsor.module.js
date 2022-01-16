@@ -9,7 +9,7 @@ import {
   SET_SPONSORS, 
   SET_MESSAGE,
   UPDATE_LIKES 
-} from "./animal.constants";
+} from "./sponsor.constants";
 
 const state = {
   sponsors: []

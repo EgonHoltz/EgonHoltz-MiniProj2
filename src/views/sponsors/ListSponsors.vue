@@ -41,7 +41,7 @@
               <tr v-for="sponsor of sponsors" :key="sponsor._id">
                 <td class="pt-4">{{sponsor.name}}</td>
                 <td class="pt-4">{{sponsor.group}}</td>
-                <td class="pt-4">{{sponsor.level}}</td>
+                <td class="pt-4">{{sponsor.dtRegister}}</td>
                 <td>
                   <router-link
                     :to="{name:'editSponsor', params:{sponsorId: sponsor._id}}"

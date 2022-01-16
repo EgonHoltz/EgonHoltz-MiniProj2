@@ -75,7 +75,7 @@ function handleResponses(code) {
       message = "Mensagem desconhecida"
       break;
   }
-  return message
+  return message;
 }
 
-export default animalService;
+export default sponsorService;
