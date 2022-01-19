@@ -42,49 +42,17 @@
             </div>
             <div class="form-group">
               <div class="form-group">
-                <input
-                  v-model="activeSponsor"
-                  type="checkbox"
-                  class="form-control"
-                  id="chkActiveSponsor"
-                  required
-                />
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="form-group">
-                <input
+                <CustomCurrencyInput
                   v-model="valueCampaign"
-                  type="number"
-                  min="1"
+                  :options="{ currency: 'EUR', 
+                    locale: 'pt-PT', 
+                    hideNegligibleDecimalDigitsOnFocus: false, 
+                    hideCurrencySymbolOnFocus: true,
+                    hideGroupingSeparatorOnFocus: true}"
                   class="form-control form-control-lg"
                   id="txtValueCampaign"
                   placeholder="escreve o valor da campanha em €"
                   required
-                />
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="form-group">
-                <input
-                  v-model="activationDate"
-                  type="datetime"
-                  class="form-control form-control-lg"
-                  id="dtActivitation"
-                  format="yyyy-MM-dd"
-                  readonly
-                />
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="form-group">
-                <input
-                  v-model="endDate"
-                  type="datetime"
-                  class="form-control form-control-lg"
-                  id="dtEndSponsor"
-                  format="yyyy-MM-dd"
-                  readonly
                 />
               </div>
             </div>
@@ -108,21 +76,21 @@ import { ADD_SPONSOR } from "@/store/sponsors/sponsor.constants";
 import HeaderPage from "@/components/HeaderPage.vue";
 import router from "@/router";
 import { mapGetters } from "vuex";
+import CustomCurrencyInput from "@/components/CustomCurrencyInput.vue";
 
 export default {
   name: "AddSponsor",
   components: {
-    HeaderPage
+    HeaderPage,
+    CustomCurrencyInput
   },
   data: () => {
     return {
       name: "",
       contact: "",
       group: "",
-      activeSponsor: false,
-      valueCampaign: 0,
-      activationDate: "1900-01-01T00:00:00.000Z",
-      endDate: "1900-01-01T00:00:00.000Z"
+      activeSponsor: true,
+      valueCampaign: 0
     };
   },
   computed: {

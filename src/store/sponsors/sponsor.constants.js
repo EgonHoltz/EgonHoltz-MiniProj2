@@ -3,7 +3,8 @@ export const FETCH_SPONSORS = "fetchSponsors";
 export const ADD_SPONSOR = "addSponsor";
 export const EDIT_SPONSOR = "editSponsor";
 export const REMOVE_SPONSOR = "removeSponsor";
-
+export const ACTIVATE_SPONSOR = "activateSponsor";
+export const DEACTIVATE_SPONSOR = "deactivateSponsor";
 
 // Mutations
 export const SET_SPONSORS = "setSponsors";

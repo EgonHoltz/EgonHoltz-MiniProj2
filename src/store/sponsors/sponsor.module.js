@@ -4,7 +4,9 @@ import {
   FETCH_SPONSORS, 
   ADD_SPONSOR, 
   EDIT_SPONSOR, 
-  REMOVE_SPONSOR, 
+  REMOVE_SPONSOR,
+  ACTIVATE_SPONSOR,
+  DEACTIVATE_SPONSOR,
   // Mutations
   SET_SPONSORS, 
   SET_MESSAGE,
@@ -68,6 +70,30 @@ const actions = {
         sponsorService.removeSponsor(rootState.auth.token, id)
         .then(res => {
           commit(SET_MESSAGE, `O patrocinador foi removido com sucesso!`);
+          resolve(res)
+        }, err => {
+          commit(SET_MESSAGE, err.message)
+          reject(err)
+        });
+    });
+  },
+  [ACTIVATE_SPONSOR]: ({ commit, rootState }, id) => {
+    return new Promise((resolve, reject) => {
+      sponsorService.activateSpecialist(rootState.auth.token, id)
+        .then(res => {
+          commit(SET_MESSAGE, `O especialista foi ativado com sucesso!`);
+          resolve(res)
+        }, err => {
+          commit(SET_MESSAGE, err.message)
+          reject(err)
+        });
+    });
+  },
+  [DEACTIVATE_SPONSOR]: ({ commit, rootState }, id) => {
+    return new Promise((resolve, reject) => {
+      sponsorService.deactivateSpecialist(rootState.auth.token, id)
+        .then(res => {
+          commit(SET_MESSAGE, `O especialista foi desativado com sucesso!`);
           resolve(res)
         }, err => {
           commit(SET_MESSAGE, err.message)

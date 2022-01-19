@@ -41,27 +41,38 @@
               <tr v-for="sponsor of sponsors" :key="sponsor._id">
                 <td class="pt-4">{{sponsor.name}}</td>
                 <td class="pt-4">{{sponsor.group}}</td>
-                <td class="pt-4">{{sponsor.dtRegister}}</td>
+                <td class="pt-4">{{sponsor.dtRegister | formatDate}}</td>
                 <td>
                   <router-link
                     :to="{name:'editSponsor', params:{sponsorId: sponsor._id}}"
                     tag="button"
-                    class="btn btn-outline-success mr-2 mt-2"
-                  >
+                    class="btn btn-outline-success mr-2 mt-2">
                     <i class="fas fa-edit"></i> EDITAR
                   </router-link>
                   <button
                     @click="viewSponsor(sponsor._id)"
                     type="button"
-                    class="btn btn-outline-success mr-2 mt-2"
-                  >
-                    <i class="fas fa-search"></i> VER
+                    class="btn btn-outline-success mr-2 mt-2">
+                    <i class="fas fa-check"></i> VER
+                  </button>
+                  <button
+                    v-if="sponsor.activeSponsor == true"
+                    @click="deactivateSponsor(sponsor._id)"
+                    type="button"
+                    class="btn btn-outline-warning mr-2 mt-2">
+                    <i class="fas fa-eye-slash"></i> DESATIVAR
+                  </button>
+                  <button
+                    v-else
+                    @click="activateSponsor(sponsor._id)"
+                    type="button"
+                    class="btn btn-outline-warning mr-2 mt-2">
+                    <i class="fas fa-search"></i> ATIVAR
                   </button>
                   <button
                     @click="removeSponsor(sponsor._id)"
                     type="button"
-                    class="btn btn-outline-danger mr-2 mt-2"
-                  >
+                    class="btn btn-outline-danger mr-2 mt-2">
                     <i class="fas fa-trash-alt"></i> REMOVER
                   </button>
                 </td>
@@ -77,9 +88,10 @@
 
 <script>
 
-import { FETCH_SPONSORS, REMOVE_SPONSOR } from "@/store/sponsors/sponsor.constants";
+import { FETCH_SPONSORS, REMOVE_SPONSOR, ACTIVATE_SPONSOR, DEACTIVATE_SPONSOR } from "@/store/sponsors/sponsor.constants";
 import HeaderPage from "@/components/HeaderPage.vue";
 import { mapGetters } from "vuex";
+import moment from 'moment';
 
 export default {
   name: "ManageSponsors",
@@ -126,10 +138,21 @@ export default {
     },
 
     generateTemplate(sponsor) {
+      let dtRegister = moment(sponsor.dtRegister).format('DD/MM/YYYY hh:mm');
+      let endDate = moment(sponsor.endDate).format('DD/MM/YYYY hh:mm');
+      let activationDate = moment(sponsor.activationDate).format('DD/MM/YYYY hh:mm');
+      let formatter = new Intl.NumberFormat('pt-PT', {style: 'currency',currency: 'EUR'});
+      let valueCampaignFormatted = formatter.format(sponsor.valueCampaign)
       let response = `
+          <p>Contacto: ${sponsor.contact}</p>
           <h4>Grupo:</b> ${sponsor.group}</h4>
-          <p>${sponsor.name}</p> 
-        `;
+          <p>Valor da campanha: ${valueCampaignFormatted} </p>
+          <p>Data de criação: ${dtRegister} </p>
+          <p>Data de inicio da campanha: ${activationDate} </p>`
+          if (!sponsor.activeSponsor){
+            response += `<p>Data de fim da campanha: ${endDate} </p>`;
+          }
+        ;
       return response;
     },
     removeSponsor(id) {
@@ -142,6 +165,42 @@ export default {
         () => {
           this.$store.dispatch(`sponsor/${REMOVE_SPONSOR}`, id).then(() => {
             this.$alert(this.getMessage, "Patrocinador removido!", "success");
+            this.fetchSponsors();
+          });
+        },
+        () => {
+          this.$alert("Remoção cancelada!", "Informação", "info");
+        }
+      );
+    },
+    deactivateSponsor(id){
+      this.$confirm(
+        "Se sim, clique em OK",
+        "Deseja mesmo desativar o patrocinador?",
+        "warning",
+        { confirmButtonText: "OK", cancelButtonText: "Cancelar" }
+      ).then(
+        () => {
+          this.$store.dispatch(`sponsor/${DEACTIVATE_SPONSOR}`, id).then(() => {
+            this.$alert(this.getMessage, "Patrocinador desativado!", "success");
+            this.fetchSponsors();
+          });
+        },
+        () => {
+          this.$alert("Remoção cancelada!", "Informação", "info");
+        }
+      );
+    },
+    activateSponsor(id){
+      this.$confirm(
+        "Se sim, clique em OK",
+        "Deseja mesmo ativar o patrocinador?",
+        "warning",
+        { confirmButtonText: "OK", cancelButtonText: "Cancelar" }
+      ).then(
+        () => {
+          this.$store.dispatch(`sponsor/${ACTIVATE_SPONSOR}`, id).then(() => {
+            this.$alert(this.getMessage, "Patrocinador ativado!", "success");
             this.fetchSponsors();
           });
         },

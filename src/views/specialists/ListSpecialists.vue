@@ -41,7 +41,7 @@
               <tr v-for="specialist of specialists" :key="specialist._id">
                 <td class="pt-4">{{specialist.name}}</td>
                 <td class="pt-4">{{getAllAnimals(specialist)}}</td>
-                <td class="pt-4">{{specialist.creationDate}}</td>
+                <td class="pt-4">{{specialist.creationDate | formatDate}}</td>
                 <td>
                   <router-link
                     :to="{name:'editSpecialist', params:{specialistId: specialist._id}}"
@@ -80,6 +80,7 @@
 import { FETCH_SPECIALISTS, REMOVE_SPECIALIST } from "@/store/specialists/specialist.constants";
 import HeaderPage from "@/components/HeaderPage.vue";
 import { mapGetters } from "vuex";
+import moment from 'moment';
 
 export default {
   name: "ManageSpecialists",
@@ -117,7 +118,7 @@ export default {
     },
     getAllAnimals(specialist){
       let allAnimals =""
-      specialist.animals.array.forEach(element => {
+      specialist.animals.forEach(element => {
         if(allAnimals == ""){
           allAnimals = element.animal;
         } else {
@@ -136,9 +137,15 @@ export default {
     },
 
     generateTemplate(specialist) {
+      let anosSpec = new Date().getFullYear() - specialist.yearSpecializationStart;
+      let creationDate = moment(specialist.creationDate).format('DD/MM/YYYY hh:mm');
+      let birthDate = moment(specialist.birthDate).format('DD/MM/YYYY');
       let response = `
-          <h4>Grupo:</b> ${specialist.group}</h4>
-          <p>${specialist.name}</p> 
+          <p>${specialist.contact}</p> 
+          <h4>Especialista nos animais:</b> ${this.getAllAnimals(specialist)}</h4>
+          <p>Anos de especialidades: ${anosSpec}</p>
+          <p>Data de nascimento: ${birthDate}</p>
+          <p>Data de criação: ${creationDate}</p>
         `;
       return response;
     },

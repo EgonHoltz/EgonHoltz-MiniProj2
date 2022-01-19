@@ -61,6 +61,36 @@ export const sponsorService = {
     } else {
       throw Error(handleResponses(response.status));
     }
+  },
+  
+  async activateSpecialist(token, id) {
+    const response = await fetch(`${API_URL}/sponsors/activate/${id}`, {
+      method: "PUT",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token
+      }
+    });
+    if (response.ok) {
+      return await response.json();
+    } else {
+      throw Error(handleResponses(response.status));
+    }
+  },
+  
+  async deactivateSpecialist(token, id) {
+    const response = await fetch(`${API_URL}/sponsors/deactivate/${id}`, {
+      method: "PUT",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token
+      }
+    });
+    if (response.ok) {
+      return await response.json();
+    } else {
+      throw Error(handleResponses(response.status));
+    }
   }
 
 };

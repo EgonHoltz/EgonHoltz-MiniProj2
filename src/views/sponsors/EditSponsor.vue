@@ -39,66 +39,6 @@
                 <option value="reptil">RÉPTIL</option>
               </select>
             </div>
-            <div class="form-group">
-              <div class="form-group">
-                <input
-                  v-model="sponsor.activeSponsor"
-                  type="checkbox"
-                  class="form-control"
-                  id="chkActiveSponsor"
-                  required
-                />
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="form-group">
-                <input
-                  v-model="sponsor.valueCampaign"
-                  type="number"
-                  min="1"
-                  class="form-control form-control-lg"
-                  id="txtValueCampaign"
-                  placeholder="escreve o valor da campanha em €"
-                  required
-                />
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="form-group">
-                <input
-                  v-model="sponsor.activationDate"
-                  type="datetime"
-                  class="form-control form-control-lg"
-                  id="dtActivitation"
-                  format="yyyy-MM-dd"
-                  readonly
-                />
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="form-group">
-                <input
-                  v-model="sponsor.endDate"
-                  type="datetime"
-                  class="form-control form-control-lg"
-                  id="dtEndSponsor"
-                  format="yyyy-MM-dd"
-                  readonly
-                />
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="form-group">
-                <input
-                  v-model="sponsor.registerDate"
-                  type="datetime"
-                  class="form-control form-control-lg"
-                  id="dtRegister"
-                  format="yyyy-MM-dd HH:mm:ss"
-                  readonly
-                />
-              </div>
-            </div>
             <button type="submit" class="btn btn-outline-success btn-lg mr-2">
               <i class="fas fa-edit"></i> ATUALIZAR
             </button>

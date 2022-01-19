@@ -33,9 +33,7 @@
               <div class="form-group">
                 <input
                   v-model="specialist.birthDate"
-                  type="date"
-                  onmouseenter="(this.type='date')"
-                  onmouseleave="(this.type='text')"
+                  type="text"
                   class="form-control form-control-lg"
                   id="txtBirthDate"
                   placeholder="escreve a data de nascimento"
@@ -48,7 +46,7 @@
                 <input
                   v-model="specialist.yearSpecializationStart"
                   type="number"
-                  min="1"
+                  min="1900"
                   max="2999"
                   class="form-control form-control-lg"
                   id="yearSpecializationStart"
@@ -80,6 +78,11 @@
                 </div>
               </div>
             </div>
+            <button
+              @click="addAnimal"
+              type="button"
+              class="btn btn-outline-success mr-2"
+            ><i class="fas fa-plus-square"></i> ADICIONAR ANIMAL</button>
             <button type="submit" class="btn btn-outline-success btn-lg mr-2">
               <i class="fas fa-edit"></i> ATUALIZAR
             </button>
@@ -103,6 +106,7 @@ import { EDIT_SPECIALIST } from "@/store/specialists/specialist.constants";
 import HeaderPage from "@/components/HeaderPage.vue";
 import router from "@/router";
 import { mapGetters } from "vuex";
+import moment from 'moment';
 
 export default {
   name: "EditSpecialist",
@@ -141,6 +145,8 @@ export default {
   },
   created() {
       this.specialist = this.getSpecialistsById(this.$route.params.specialistId);
+      let birthDtTemp = moment(this.specialist.birthDate).format('DD/MM/YYYY');
+      this.specialist.birthDate = birthDtTemp;
   },
 };
 </script>
